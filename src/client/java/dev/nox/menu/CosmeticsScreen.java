@@ -84,6 +84,6 @@ public class CosmeticsScreen extends Screen {
 
 	@Override
 	public void onClose() {
-		if (this.minecraft != null) this.minecraft.setScreen(parent);
+		if (this.minecraft != null) this.minecraft.gui.setScreen(parent);
 	}
 }
