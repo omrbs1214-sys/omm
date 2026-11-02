@@ -1,0 +1,30 @@
+name: build
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v6
+      - name: setup jdk
+        uses: actions/setup-java@v5
+        with:
+          java-version: '25'
+          distribution: 'microsoft'
+      - name: make gradle wrapper executable
+        run: chmod +x ./gradlew
+      - name: build
+        run: ./gradlew build
+      - name: pick jar
+        run: cp "$(ls build/libs/nox-menu-*.jar | grep -v sources | head -1)" nox-menu.jar
+      - name: publish release (tag "latest")
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Nox Menu (latest build)
+          files: nox-menu.jar
