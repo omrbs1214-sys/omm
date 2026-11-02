@@ -1,0 +1,20 @@
+{
+	"schemaVersion": 1,
+	"id": "noxmenu",
+	"version": "${version}",
+	"name": "Nox Menu",
+	"description": "Animated 3D character on the title and pause screens, plus an in-game cosmetics menu (Right Shift). Works with Nox Launcher.",
+	"authors": ["Nox"],
+	"license": "CC0-1.0",
+	"icon": "assets/nox/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": ["dev.nox.menu.NoxMenuClient"]
+	},
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
