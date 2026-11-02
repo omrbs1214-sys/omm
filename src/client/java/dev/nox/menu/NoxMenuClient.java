@@ -30,7 +30,7 @@ public class NoxMenuClient implements ClientModInitializer {
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			while (openKey.consumeClick()) {
-				if (client.screen == null) client.setScreen(new CosmeticsScreen(null));
+				if (client.gui.screen() == null) client.gui.setScreen(new CosmeticsScreen(null));
 			}
 			// every ~2s: did the launcher bake a new avatar? then reload resources so the new sprite sheet shows up
 			if (++tick % 40 == 0) {
@@ -50,7 +50,7 @@ public class NoxMenuClient implements ClientModInitializer {
 		int areaY = 34;
 		int areaH = Math.max(80, screen.height - areaY - 52);
 
-		Button b = Button.builder(Component.literal("Cosmetics"), btn -> client.setScreen(new CosmeticsScreen(screen)))
+		Button b = Button.builder(Component.literal("Cosmetics"), btn -> client.gui.setScreen(new CosmeticsScreen(screen)))
 			.pos(areaX + (areaW - 100) / 2, areaY + areaH + 6)
 			.size(100, 20)
 			.build();
